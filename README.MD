@@ -6,9 +6,9 @@
 
 ## Project Structure
 - sentimentpipeline/
-- data/ # Contains IMDB CSV
-- db/ # SQLite database (reviews.db)
-- scripts/ # Ingestion script (ingest.py)
+- data/ Contains IMDB CSV
+- db/ SQLite database (reviews.db)
+- scripts/ Ingestion script (ingest.py)
 - requirements.txt
 - README.md
 
