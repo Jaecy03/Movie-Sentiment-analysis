@@ -5,12 +5,12 @@
 - 50,000 movie reviews labeled as `positive` or `negative`
 
 ## Project Structure
-sentimentpipeline/
-data/ # Contains IMDB CSV
-db/ # SQLite database (reviews.db)
-scripts/ # Ingestion script (ingest.py)
-requirements.txt
-README.md
+- sentimentpipeline/
+- data/ # Contains IMDB CSV
+- db/ # SQLite database (reviews.db)
+- scripts/ # Ingestion script (ingest.py)
+- requirements.txt
+- README.md
 
 ## What This Script Does
 - Reads `IMDB Dataset.csv` using `pandas`
