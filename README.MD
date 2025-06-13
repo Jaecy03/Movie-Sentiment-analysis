@@ -1,4 +1,4 @@
-# Sentiment Analysis Pipeline – Step 1: Ingestion
+# Movie Sentiment Analysis  – Step 1: Ingestion
 
 ## Dataset
 - IMDB Movie Reviews dataset from Kaggle
