@@ -52,7 +52,6 @@ python scripts/ingest.py
 - data/ Contains IMDB CSV, cleaned_reviews.csv 
 - db/ SQLite database (reviews.db)
 - models/ sentiment_pipeline.pkl
-- plots/ class_distribution.png, text_length_distribution.png
 - scripts/ explore.py, feature_extraction.py, ingest.py, preprocess.py
 - requirements.txt
 - README.md
