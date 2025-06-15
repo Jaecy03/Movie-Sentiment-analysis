@@ -7,7 +7,7 @@ This project implements an end-to-end sentiment analysis pipeline using movie re
 - 50,000 movie reviews labeled as `positive` or `negative`
 
 ## How to Run
-```bash
+bash
 pip install -r requirements.txt
 python scripts/ingest.py
 
