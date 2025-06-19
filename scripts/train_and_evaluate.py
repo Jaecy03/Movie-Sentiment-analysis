@@ -2,6 +2,8 @@ import pandas as pd
 import joblib
 import os
 import time
+import json
+import hashlib
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.linear_model import LogisticRegression
@@ -9,13 +11,15 @@ from sklearn.metrics import classification_report, confusion_matrix, ConfusionMa
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from functools import wraps
+from datetime import datetime
 
-# Load preprocessed data
+
+
 df = pd.read_csv('data/cleaned_reviews.csv')
 X = df['clean_text']
 y = df['label']
 
-# Logging decorator
+
 def log_time(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -35,16 +39,33 @@ def train_and_evaluate(X_train, X_test, y_train, y_test):
 
     pipeline.fit(X_train, y_train)
 
-    # Save model
+    
     os.makedirs("models", exist_ok=True)
     joblib.dump(pipeline, 'models/baseline_model.pkl')
-    print("✅ Baseline model saved to models/baseline_model.pkl")
+    print("Baseline model saved to models/baseline_model.pkl")
 
-    # Evaluate
+    
     y_pred = pipeline.predict(X_test)
-    print("\n✅ Classification Report:\n", classification_report(y_test, y_pred))
+    report = classification_report(y_test, y_pred, output_dict=True)
+    accuracy = report['accuracy']
+    print("\nClassification Report:\n", classification_report(y_test, y_pred))
+    
+    metadata = {
+        "trained_at": datetime.now().isoformat(),
+        "model_type": "Logistic Regression",
+        "test_accuracy": accuracy,
+        "dataset_hash": hashlib.md5(df.to_csv(index=False).encode()).hexdigest(),
+        "hyperparameters": {
+            "ngram_range": (1, 2),
+            "max_features": 5000,
+            "C": 1.0
+        }
+    }
 
-    # Confusion matrix
+    with open("models/baseline_model_metadata.json", "w") as f:
+        json.dump(metadata, f, indent=4)
+    print("Baseline metadata saved to models/baseline_model_metadata.json")
+  
     cm = confusion_matrix(y_test, y_pred)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(cmap='Blues')
@@ -68,24 +89,23 @@ def tune_hyperparameters(X_train, y_train):
     grid = GridSearchCV(pipeline, param_grid, cv=3, verbose=2, n_jobs=-1)
     grid.fit(X_train, y_train)
 
-    print("✅ Best Parameters:", grid.best_params_)
-    print(f"✅ Validation Accuracy: {grid.best_score_:.4f}")
+    print("Best Parameters:", grid.best_params_)
+    print(f"Validation Accuracy: {grid.best_score_:.4f}")
 
-    # Save best model
+    
     joblib.dump(grid.best_estimator_, 'models/grid_tuned_model.pkl')
 
-    # Save grid results to CSV
+    
     results = pd.DataFrame(grid.cv_results_)
     os.makedirs("data", exist_ok=True)
     results.to_csv("data/grid_search_results.csv", index=False)
-    print("✅ Grid search results saved to data/grid_search_results.csv")
+    print("Grid search results saved to data/grid_search_results.csv")
 
 if __name__ == "__main__":
-    # 70/15/15 split
+   
     X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
     train_and_evaluate(X_train, X_test, y_train, y_test)
-    # Uncomment to tune:
-    # tune_hyperparameters(X_train, y_train)
+   
 
