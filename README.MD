@@ -69,7 +69,7 @@ python scripts/ingest.py
 
 
 ### Neural Network Model (Keras)
-- **Script**: `scripts/train_nn_model.py`
+- **Script**: `scripts/nn_model.py`
 - **Architecture**:  
   `Embedding → GlobalAveragePooling1D → Dense → Dense(sigmoid)`
 - **Tokenization**: `Tokenizer(num_words=5000)` with padding to `maxlen=200`
