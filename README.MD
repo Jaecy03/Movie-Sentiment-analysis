@@ -47,7 +47,7 @@ python scripts/ingest.py
     - Accuracy on test data: **~84%**
     - Also includes a custom TF-IDF implementation (for 5 samples)
 
-### Step 4: Model Training & Evaluation
+### 4. Model Training & Evaluation
 
 #### Baseline Model (Logistic Regression)
 - **Script**: `scripts/train_and_evaluate.py`
