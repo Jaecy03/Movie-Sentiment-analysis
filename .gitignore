@@ -49,7 +49,7 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 
-# Large datasets (uncomment if you want to exclude large CSV files)
+
 # *.csv
 
 # Jupyter Notebook
