@@ -47,12 +47,64 @@ python scripts/ingest.py
     - Accuracy on test data: **~84%**
     - Also includes a custom TF-IDF implementation (for 5 samples)
 
+### Step 4: Model Training & Evaluation
+
+#### Baseline Model (Logistic Regression)
+- **Script**: `scripts/train_and_evaluate.py`
+- **Pipeline**: `TfidfVectorizer(ngram_range=(1,2), max_features=5000)` → `LogisticRegression()`
+- **Data Split**: 70% Train / 15% Validation / 15% Test
+- **Evaluation**:
+  - Metrics: Accuracy, Precision, Recall, F1-score
+  - Confusion Matrix: plotted and saved to `plots/confusion_matrix.png`
+- **Model Saving**:
+  - Pickled model: `models/baseline_model.pkl`
+  - Metadata JSON: `models/baseline_model_metadata.json`  
+    Includes: training date, dataset hash, hyperparameters, test accuracy
+- **Tuning**: Hyperparameter tuning using `GridSearchCV`
+  - Results saved to: `data/grid_search_results.csv`
+  - Best model saved to: `models/grid_tuned_model.pkl`
+- **Other**: Decorator used to log training time for tracking
+
+
+#### Neural Network Model (Keras)
+- **Script**: `scripts/train_nn_model.py`
+- **Architecture**:  
+  `Embedding → GlobalAveragePooling1D → Dense → Dense(sigmoid)`
+- **Tokenization**: `Tokenizer(num_words=5000)` with padding to `maxlen=200`
+- **Evaluation**:
+  - Metrics: Accuracy, Precision, Recall, F1-score
+  - Training/validation accuracy and loss plotted and saved to `plots/nn_accuracy.png`
+- **Model Saving**:
+  - Keras `.h5` model: `models/nn_sentiment_model.h5`
+  - Metadata JSON: `models/nn_model_metadata.json`  
+    Includes: tokenizer config, training time, hyperparameters, dataset hash, test accuracy
+
+
+#### Comparison, Inference & SQLite Logging
+- **Script**: `scripts/evaluate_models.py`
+- **Functions**:
+  - Loads metadata for both models
+  - Prints side-by-side metrics and hyperparameters
+  - Loads both models and runs **sample inference** on new review text
+  - Saves experiment metadata into SQLite:
+    - `db/experiments.db → model_results` table
+
+
+### Outputs from Step 4
+- `models/`: `.pkl`, `.h5`, metadata `.json`
+- `plots/`: confusion matrix and NN training curve
+- `db/experiments.db`: experiment logs (accuracy, hyperparameters, training time)
+- `data/grid_search_results.csv`: tuning metrics 
+-  Sample inference works directly from `evaluate_models.py`
+
+
 ## Project Structure
 - sentimentpipeline/
 - data/ Contains IMDB CSV, cleaned_reviews.csv 
-- db/ SQLite database (reviews.db)
-- models/ sentiment_pipeline.pkl
-- scripts/ explore.py, feature_extraction.py, ingest.py, preprocess.py
+- db/ SQLite database (reviews.db), experiments.db
+- models/ baseline_model.pkl, nn_model_metadata.json, nn_sentiment_model.h5, sentiment_pipeline.pkl
+- plots/ confusion_matrix.png, nn_accuracy.png
+- scripts/ evaluate_models.py, explore.py, feature_extraction.py, ingest.py, nn_model.py, preprocess.py, train_and_evaluate.py
 - requirements.txt
 - README.md
 
