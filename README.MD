@@ -18,7 +18,6 @@ python scripts/ingest.py
 - Inserts rows into the table
 - Logs function execution time using `@log_time` decorator
 
----
 
 ## 2. Data Exploration & Preprocessing
 - **Script**: `scripts/preprocess.py`
@@ -39,7 +38,6 @@ python scripts/ingest.py
     - All steps use modular functions and logging decorators
     - Saves preprocessed output to: `data/cleaned_reviews.csv`
 
----
 
 ## 3. Feature Extraction & Model Training
 - **Script**: `scripts/feature_extraction.py`
@@ -50,7 +48,6 @@ python scripts/ingest.py
     - Accuracy on test data: **~84%**
     - Also includes a custom TF-IDF implementation (for 5 samples)
 
----
 
 ## 4. Model Training & Evaluation
 
