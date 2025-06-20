@@ -18,6 +18,8 @@ python scripts/ingest.py
 - Inserts rows into the table
 - Logs function execution time using `@log_time` decorator
 
+---
+
 ### 2. Data Exploration & Preprocessing
 - **Script**: `scripts/preprocess.py`
     - Loads data from the database
