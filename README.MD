@@ -1,17 +1,17 @@
 # Movie Sentiment Analysis  
 This project implements an end-to-end sentiment analysis pipeline using movie reviews from the IMDB dataset. The pipeline covers data ingestion, preprocessing, feature extraction, model training, and evaluation.
 
-### 1. Ingestion
-## Dataset
+## 1. Ingestion
+### Dataset
 - IMDB Movie Reviews dataset from Kaggle
 - 50,000 movie reviews labeled as `positive` or `negative`
 
-## How to Run
+### How to Run
 bash
 pip install -r requirements.txt
 python scripts/ingest.py
 
-## What This Script Does
+### What This Script Does
 - Reads `IMDB Dataset.csv` using `pandas`
 - Maps sentiment labels to 1 (positive) / 0 (negative)
 - Creates `reviews` table in `reviews.db`
@@ -20,7 +20,7 @@ python scripts/ingest.py
 
 ---
 
-### 2. Data Exploration & Preprocessing
+## 2. Data Exploration & Preprocessing
 - **Script**: `scripts/preprocess.py`
     - Loads data from the database
     - Explores:
@@ -39,7 +39,9 @@ python scripts/ingest.py
     - All steps use modular functions and logging decorators
     - Saves preprocessed output to: `data/cleaned_reviews.csv`
 
-### 3. Feature Extraction & Model Training
+---
+
+## 3. Feature Extraction & Model Training
 - **Script**: `scripts/feature_extraction.py`
     - Uses `TfidfVectorizer` with unigrams & bigrams
     - Trains a `LogisticRegression` model
@@ -48,9 +50,11 @@ python scripts/ingest.py
     - Accuracy on test data: **~84%**
     - Also includes a custom TF-IDF implementation (for 5 samples)
 
-### 4. Model Training & Evaluation
+---
 
-#### Baseline Model (Logistic Regression)
+## 4. Model Training & Evaluation
+
+### Baseline Model (Logistic Regression)
 - **Script**: `scripts/train_and_evaluate.py`
 - **Pipeline**: `TfidfVectorizer(ngram_range=(1,2), max_features=5000)` → `LogisticRegression()`
 - **Data Split**: 70% Train / 15% Validation / 15% Test
@@ -67,7 +71,7 @@ python scripts/ingest.py
 - **Other**: Decorator used to log training time for tracking
 
 
-#### Neural Network Model (Keras)
+### Neural Network Model (Keras)
 - **Script**: `scripts/train_nn_model.py`
 - **Architecture**:  
   `Embedding → GlobalAveragePooling1D → Dense → Dense(sigmoid)`
@@ -81,7 +85,7 @@ python scripts/ingest.py
     Includes: tokenizer config, training time, hyperparameters, dataset hash, test accuracy
 
 
-#### Comparison, Inference & SQLite Logging
+### Comparison, Inference & SQLite Logging
 - **Script**: `scripts/evaluate_models.py`
 - **Functions**:
   - Loads metadata for both models
@@ -98,6 +102,7 @@ python scripts/ingest.py
 - `data/grid_search_results.csv`: tuning metrics 
 -  Sample inference works directly from `evaluate_models.py`
 
+---
 
 ## Project Structure
 - sentimentpipeline/
