@@ -50,8 +50,6 @@ Thumbs.db
 *.sqlite3
 
 
-# *.csv
-
 # Jupyter Notebook
 .ipynb_checkpoints
 
