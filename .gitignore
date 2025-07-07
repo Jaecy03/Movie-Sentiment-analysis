@@ -49,8 +49,6 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 
-# Large datasets (uncomment if you want to exclude large CSV files)
-# *.csv
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -60,3 +58,19 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Large model files (>50MB)
+models/distilbert_sentiment/
+models/distilbert_sentiment_model/model.safetensors
+models/nn_model_metadata.json
+models/nn_sentiment_model.h5
+
+# Log files
+*.log
+cron_log.txt
+label_log.txt
+label_tweets.log
+
+# HTML explanation files
+*.html
+lime_explanation.html

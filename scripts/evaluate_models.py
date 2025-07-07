@@ -28,7 +28,7 @@ print(f"  NN Model: {nn_meta['hyperparameters']}")
 if os.path.exists("plots/nn_accuracy.png"):
     print("\nAccuracy and Loss curves already saved in 'plots/' folder.")
 else:
-    print("\n⚠️ NN training plot not found. Run the NN training script to generate them.")
+    print("\nNN training plot not found. Run the NN training script to generate them.")
 
 db_path = "db/experiments.db"
 os.makedirs("db", exist_ok=True)

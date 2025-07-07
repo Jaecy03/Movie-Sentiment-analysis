@@ -13,13 +13,6 @@ from sklearn.pipeline import Pipeline
 from functools import wraps
 from datetime import datetime
 
-
-
-df = pd.read_csv('data/cleaned_reviews.csv')
-X = df['clean_text']
-y = df['label']
-
-
 def log_time(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -31,7 +24,7 @@ def log_time(func):
     return wrapper
 
 @log_time
-def train_and_evaluate(X_train, X_test, y_train, y_test):
+def train_model(X_train, X_test, y_train, y_test):
     pipeline = Pipeline([
         ('tfidf', TfidfVectorizer(ngram_range=(1, 2), max_features=5000)),
         ('clf', LogisticRegression())
@@ -103,9 +96,12 @@ def tune_hyperparameters(X_train, y_train):
 
 if __name__ == "__main__":
    
+    df = pd.read_csv('data/cleaned_reviews.csv')
+    X = df['clean_text']
+    y = df['label']
+
     X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
-    train_and_evaluate(X_train, X_test, y_train, y_test)
-   
+    train_model(X_train, X_test, y_train, y_test, metadata_df=df)
 

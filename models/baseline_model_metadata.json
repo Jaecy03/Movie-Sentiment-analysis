@@ -1,0 +1,14 @@
+{
+    "trained_at": "2025-06-19T12:33:25.688952",
+    "model_type": "Logistic Regression",
+    "test_accuracy": 0.7866666666666666,
+    "dataset_hash": "e61a71fd8fecec0dca985083ecb4d8c6",
+    "hyperparameters": {
+        "ngram_range": [
+            1,
+            2
+        ],
+        "max_features": 5000,
+        "C": 1.0
+    }
+}

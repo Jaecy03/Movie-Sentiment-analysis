@@ -4,6 +4,7 @@ import os
 import time
 import json
 from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, Dense, GlobalAveragePooling1D
@@ -86,5 +87,9 @@ metadata = {
 with open("models/nn_model_metadata.json", "w") as f:
     json.dump(metadata, f, indent=4)
 
+with open("models/nn_tokenizer.json", "w") as f:
+    f.write(tokenizer.to_json())
+
 print("Metadata saved to models/nn_model_metadata.json")
+print("Tokenizer saved to models/nn_tokenizer.json")
 
