@@ -1,16 +1,16 @@
-
 import sqlite3
 import joblib
 import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.text import tokenizer_from_json
+from keras.models import load_model
+from keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import tokenizer_from_json
 import json
 import os
 from datetime import datetime
 import logging
 from typing import List, Tuple, Union, Optional
 from pathlib import Path
+
 
 
 logging.basicConfig(
