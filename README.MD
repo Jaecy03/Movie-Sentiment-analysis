@@ -1,8 +1,8 @@
-# Movie Sentiment Analysis Pipeline 🎬🤖
+# Movie Sentiment Analysis Pipeline 
 
 This project implements a **complete end-to-end sentiment analysis pipeline** using movie reviews from the IMDB dataset. The pipeline covers data ingestion, preprocessing, feature extraction, model training, evaluation, serving, automation, and advanced NLP with transformers.
 
-## 🚀 Features
+## Features
 
 - **Multiple Model Types**: Logistic Regression, Neural Networks, Fine-tuned DistilBERT
 - **REST API Serving**: Flask APIs with JSON endpoints
@@ -113,7 +113,7 @@ python scripts/ingest.py
 -  Sample inference works directly from `evaluate_models.py`
 
 
-## 5. API Serving & Deployment 🌐
+## 5. API Serving 
 
 ### Flask REST APIs
 - **Baseline API**: `scripts/api_baseline.py` - Serves logistic regression model
@@ -154,7 +154,7 @@ curl -X POST http://localhost:5000/predict \
   -d '{"text": "This movie was amazing!"}'
 ```
 
-## 6. Automated Data Collection & Retraining 🔄
+## 6. Automated Data Collection & Retraining
 
 ### Twitter Data Collection
 - **Script**: `scripts/fetch_data.py`
@@ -188,7 +188,7 @@ curl -X POST http://localhost:5000/predict \
 0 11 * * * cd /path/to/project && python scripts/retrain_if_needed.py
 ```
 
-## 7. Dashboard & Monitoring 📊
+## 7. Dashboard & Monitoring 
 
 ### Streamlit Dashboard
 - **Script**: `scripts/dashboard.py`
@@ -212,7 +212,7 @@ streamlit run scripts/dashboard.py
 # Access at http://localhost:8501
 ```
 
-## 8. Model Explainability 🔍
+## 8. Model Explainability 
 
 ### LIME Integration
 - **Scripts**:
@@ -235,7 +235,7 @@ python scripts/explain_prediction.py --text "This movie was terrible" --model ba
 python scripts/explain_prediction.py --text "Amazing film!" --model nn --output explanation.html
 ```
 
-## 9. Advanced NLP with Transformers 🤗
+## 9. Advanced NLP with Transformers
 
 ### DistilBERT Fine-tuning
 - **Script**: `scripts/train_transformer.py`
@@ -268,7 +268,7 @@ python scripts/predict_transformers.py --text "This movie is incredible!"
 | Neural Network | 86% | 0.86 | 0.86 | 0.86 |
 | DistilBERT | 92% | 0.92 | 0.91 | 0.92 |
 
-## 10. Testing & Quality Assurance 🧪
+## 10. Testing & Quality Assurance
 
 ### Unit Tests
 - **Location**: `tests/`
@@ -295,7 +295,7 @@ python -m pytest tests/test_api.py -v
 - **Model Loading**: Ensures models load and predict correctly
 - **Integration Tests**: End-to-end pipeline validation
 
-## 📁 Complete Project Structure
+## Complete Project Structure
 
 ```
 sentimentpipeline/
@@ -353,7 +353,7 @@ sentimentpipeline/
 └── README.md                         # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Setup Environment
 ```bash
@@ -400,7 +400,7 @@ curl -X POST http://localhost:5000/predict \
   -d '{"text": "This movie was fantastic!"}'
 ```
 
-## 📊 Model Performance
+## Model Performance
 
 | Model | Accuracy | Training Time | Model Size | Use Case |
 |-------|----------|---------------|------------|----------|
@@ -410,7 +410,7 @@ curl -X POST http://localhost:5000/predict \
 
 *Note: Large DistilBERT model files are excluded from repository due to GitHub size limits. Model can be retrained using the provided scripts.
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
@@ -427,7 +427,7 @@ export LOG_LEVEL="INFO"
 - **Request Timeout**: 30 seconds
 - **Max Request Size**: 1MB
 
-## 📈 Monitoring & Logging
+## Monitoring & Logging
 
 - **API Requests**: Logged to `db/requests.db`
 - **Predictions**: Stored in `db/predictions.db`
@@ -435,7 +435,7 @@ export LOG_LEVEL="INFO"
 - **System Logs**: Available in dashboard and log files
 - **Cron Job Logs**: `cron_log.txt`, `label_log.txt`
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -443,11 +443,8 @@ export LOG_LEVEL="INFO"
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - IMDB Dataset from Kaggle
 - Hugging Face Transformers library
